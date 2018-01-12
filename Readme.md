@@ -12,51 +12,55 @@ FPGA-SoC-Linux example(1) binary and project and test code for DE0-Nano-SoC
 
 ### Install python3-numpy
 
-```
+```console
 shell# apt-get install python3-numpy
 ```
 
 ### Download FPGA-SoC-Linux-Example-1-DE0-Nano-SoC
 
-```
+```console
 shell$ git clone FPGA-SoC-Linux-Example-1-DE0-Nano-SoC
 shell$ cd FPGA-SoC-Linux-Example-1-DE0-Nano-SoC
 ```
 
 ### Install to FPGA and Device Tree
 
-```
+```console
 shell# rake install
 dtbocfg.rb --install uio_irq_sample --dts uio_irq_sample.dts
-/config/device-tree/overlays/uio_irq_sample/dtbo: Warning (unit_a[  212.745565] fpga_manager fpga0: writing pump_axi4.bin to Xilinx Zynq FPGA Manager
-ddress_vs_reg): Node /fragment@0 has a unit name, but no reg property
-[  212.795237] udmabuf amba:fpga-region0:pump-udmabuf4: driver probe start.
-[  212.808126] udmabuf udmabuf4: driver installed
-[  212.814428] udmabuf udmabuf4: major number   = 245
-[  212.819143] udmabuf udmabuf4: minor number   = 0
-[  212.825395] udmabuf udmabuf4: phys address   = 0x1f100000
-[  212.831566] udmabuf udmabuf4: buffer size    = 1048576
-[  212.836627] udmabuf amba:fpga-region0:pump-udmabuf4: driver installed.
-[  212.845412] udmabuf amba:fpga-region0:pump-udmabuf5: driver probe start.
-[  212.859166] udmabuf udmabuf5: driver installed
-[  212.864621] udmabuf udmabuf5: major number   = 245
-[  212.869332] udmabuf udmabuf5: minor number   = 1
-[  212.875630] udmabuf udmabuf5: phys address   = 0x1f200000
-[  212.881889] udmabuf udmabuf5: buffer size    = 1048576
-[  212.886945] udmabuf amba:fpga-region0:pump-udmabuf5: driver installed.
+cp pump_axi4.rbf /lib/firmware/pump_axi4.rbf
+dtbocfg.rb --install uio_irq_sample --dts uio_irq_sample.dts
+/config/device-tree/overlays/uio_irq_sample/dtbo: Warning (unit_address_vs_reg): [25851.013494] fpga_manager fpga0: writing pump_axi4.rbf to Altera SOCFPGA FPGA Manager
+Node /uio-irq-test@0 has a unit name, but no reg property
+[25851.281944] udmabuf soc:fpga-region0:pump-udmabuf4: driver probe start.
+[25851.302254] udmabuf udmabuf4: driver installed
+[25851.306800] udmabuf udmabuf4: major number   = 244
+[25851.311572] udmabuf udmabuf4: minor number   = 0
+[25851.316173] udmabuf udmabuf4: phys address   = 0x3f100000
+[25851.321618] udmabuf udmabuf4: buffer size    = 4194304
+[25851.326793] udmabuf udmabuf4: dma coherent   = 0
+[25851.331397] udmabuf soc:fpga-region0:pump-udmabuf4: driver installed.
+[25851.338417] udmabuf soc:fpga-region0:pump-udmabuf5: driver probe start.
+[25851.358070] udmabuf udmabuf5: driver installed
+[25851.362507] udmabuf udmabuf5: major number   = 244
+[25851.367319] udmabuf udmabuf5: minor number   = 1
+[25851.371921] udmabuf udmabuf5: phys address   = 0x3f500000
+[25851.377353] udmabuf udmabuf5: buffer size    = 4194304
+[25851.382473] udmabuf udmabuf5: dma coherent   = 0
+[25851.387113] udmabuf soc:fpga-region0:pump-udmabuf5: driver installed.
 ```
 
 ## Run sample1 or sample2
 
 ### Compile sample1 or sample2
 
-```
+```console
 shell# rake sample1 sample2
 ```
 
 ### Run sample1
 
-```
+```console
 shell# ./sample1
 time = 0.005702 sec
 time = 0.005685 sec
@@ -72,7 +76,7 @@ time = 0.005692 sec
 
 ### Run sample2
 
-```
+```console
 shell$ ./sample2
 time = 0.005713 sec
 time = 0.005694 sec
@@ -88,7 +92,7 @@ time = 0.005718 sec
 
 ## Run sample.py
 
-```
+```console
 shell# python3 sample.py
 elapsed_time:5.912[msec]
 elapsed_time:5.847[msec]
@@ -106,7 +110,7 @@ udmabuf4 == udmabuf5 : OK
 
 ## Uninstall
 
-```
+```console
 shell# rake uninstall
 dtbocfg.rb --remove uio_irq_sample
 [  476.886343] udmabuf udmabuf5: driver uninstalled
@@ -124,7 +128,7 @@ dtbocfg.rb --remove uio_irq_sample
 
 ### Download FPGA-SoC-Linux-Example-1-Base
 
-```
+```console
 shell$ cd FPGA-SoC-Linux-Example-1-DE0-Nano-SoC
 shell$ git submodule update --init --recursive
 ```
@@ -133,14 +137,14 @@ shell$ git submodule update --init --recursive
 
 Run SoC EDS Command Shell
 
-```
+```console
 shell$ cd project
 shell$ make rbf
 ```
 
 ### Copy DE0_NANO_SOC.rbf to pump_axi4.rbf
 
-```
+```console
 shell$ cd project
 shell$ cp DE0_NANO_SOC.rbf ../pump_axi4.rbf
 ```
