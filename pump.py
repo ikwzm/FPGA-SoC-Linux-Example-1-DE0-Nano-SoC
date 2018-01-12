@@ -37,13 +37,13 @@ class Pump:
         self.regs = regs
 
     def intake_setup(self, buf_addr, xfer_size):
-        self.regs.write_word(Pump.INTAKE_ADDR_REGS, buf_addr + ALTERA_SOC_ACP_OFFSET)
+        self.regs.write_word(Pump.INTAKE_ADDR_REGS, buf_addr + Pump.ALTERA_SOC_ACP_OFFSET)
         self.regs.write_word(Pump.INTAKE_RESV_REGS, 0x00000000)
         self.regs.write_word(Pump.INTAKE_SIZE_REGS, xfer_size )
         self.regs.write_word(Pump.INTAKE_MODE_REGS, Pump.MODE_AXI_ATTR)
 
     def outlet_setup(self, buf_addr, xfer_size):
-        self.regs.write_word(Pump.OUTLET_ADDR_REGS, buf_addr + ALTERA_SOC_ACP_OFFSET)
+        self.regs.write_word(Pump.OUTLET_ADDR_REGS, buf_addr + Pump.ALTERA_SOC_ACP_OFFSET)
         self.regs.write_word(Pump.OUTLET_RESV_REGS, 0x00000000)
         self.regs.write_word(Pump.OUTLET_SIZE_REGS, xfer_size )
         self.regs.write_word(Pump.OUTLET_MODE_REGS, Pump.MODE_AXI_ATTR | Pump.MODE_IRQ_ENABLE)
